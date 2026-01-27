@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -46,7 +46,7 @@
 <body>
 
   <h1>MUNA BARAKATI</h1>
-  <p>Aplikasi Website</p>
+  <p>Aplikasi</p>
 
   <!-- TOMBOL LINK -->
   <a class="btn" href="https://droid10.my.id" target="_blank">KLIK DI SINI</a>
