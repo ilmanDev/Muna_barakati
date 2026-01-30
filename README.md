@@ -1,263 +1,206 @@
-
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MUNA BARAKATI</title>
+<title>MUNA BARAKATI | Smart Login</title>
 
 <style>
-:root{
-  --bg:#eef5ff;
-  --card:#ffffff;
-  --text:#0b1c2d;
-  --primary:#0a66ff;
-  --accent:#00d4ff;
-}
-body.dark{
-  --bg:#020c1b;
-  --card:#071a33;
-  --text:#eaf2ff;
-  --primary:#3b8cff;
-  --accent:#00e0ff;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 
-*{box-sizing:border-box;font-family:system-ui,-apple-system}
 body{
-  margin:0;min-height:100vh;
-  background:var(--bg);
-  display:flex;justify-content:center;align-items:center;
-  color:var(--text);
-  transition:.4s;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#00f5ff,#020024);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#fff;
 }
 
-/* SPLASH */
-#splash{
-  position:fixed;inset:0;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  color:#fff;z-index:999;
-}
-.loader{
-  width:42px;height:42px;
-  border:3px solid rgba(255,255,255,.3);
-  border-top:3px solid #fff;
+/* PARTICLES */
+.particle{
+  position:absolute;
+  width:6px;height:6px;
+  background:#00f5ff;
   border-radius:50%;
-  margin-top:18px;
-  animation:spin 1s linear infinite;
+  opacity:.6;
+  animation:float 8s linear infinite;
 }
-@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes float{
+  from{transform:translateY(100vh)}
+  to{transform:translateY(-10vh)}
+}
 
 /* CARD */
 .card{
-  background:var(--card);
-  width:100%;max-width:420px;
-  padding:26px;border-radius:26px;
-  box-shadow:0 30px 70px rgba(0,0,0,.2);
-  display:none;
-  transition:.4s;
+  width:100%;
+  max-width:380px;
+  padding:35px;
+  border-radius:20px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 0 40px rgba(0,245,255,.6);
+  z-index:10;
+  animation:zoom .8s ease;
+}
+@keyframes zoom{
+  from{opacity:0;transform:scale(.8)}
+  to{opacity:1;transform:scale(1)}
 }
 
-/* TOGGLE */
-.toggle{
-  position:absolute;
-  top:16px;right:16px;
-  width:42px;height:42px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  font-size:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-
-/* LOGO */
 .logo{
   text-align:center;
-  font-size:28px;
-  font-weight:900;
-  background:linear-gradient(90deg,var(--primary),var(--accent));
-  -webkit-background-clip:text;
-  color:transparent;
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#00f5ff;
 }
-.subtitle{text-align:center;color:#6b7c93;margin-bottom:12px}
-
-/* FACE */
-.face-wrap{position:relative}
-video{
-  width:100%;
-  border-radius:20px;
-  background:#000;
-}
-.scan-line{
-  position:absolute;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,transparent,var(--accent),transparent);
-  animation:scan 2s linear infinite;
-}
-@keyframes scan{0%{top:0}100%{top:100%}}
-.face-frame{
-  position:absolute;inset:12px;
-  border:2px solid var(--accent);
-  border-radius:18px;
-}
-.scan-text{text-align:center;margin:10px 0;font-weight:700}
-
-.btn{
-  width:100%;
-  padding:14px;border:none;
-  border-radius:18px;
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:#fff;font-size:16px;font-weight:800;
-  cursor:pointer;
-}
-
-/* MENU */
-.menu{display:none}
-.menu h3{text-align:center;margin-bottom:16px}
-.grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:16px
-}
-.item{
-  background:linear-gradient(180deg,var(--card),#eaf2ff);
-  border-radius:20px;
-  padding:18px;
+.subtitle{
   text-align:center;
-  text-decoration:none;
-  color:var(--text);
-  font-weight:800;
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  font-size:14px;
+  opacity:.85;
+  margin:10px 0 25px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  margin-bottom:15px;
+  background:rgba(255,255,255,.18);
+  color:#fff;
+}
+input::placeholder{color:#ddd}
+input:focus{outline:none;box-shadow:0 0 10px #00f5ff}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,#00f5ff,#0066ff);
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 15px #00f5ff;
   transition:.3s;
 }
-body.dark .item{
-  background:linear-gradient(180deg,#0a254f,#071a33);
+button:hover{transform:scale(1.05)}
+
+.menu{display:none}
+.menu h3{
+  text-align:center;
+  color:#00f5ff;
+  margin-bottom:20px;
 }
-.item:hover{transform:translateY(-6px)}
-.icon svg{width:34px;height:34px;fill:var(--primary);margin-bottom:6px}
+.link{
+  display:block;
+  text-decoration:none;
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:12px;
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  text-align:center;
+  font-weight:600;
+  transition:.3s;
+}
+.link:hover{background:#00f5ff;color:#000}
 
 .logout{
-  margin-top:20px;
-  background:#ff4d4d;color:#fff;
-  padding:14px;border-radius:16px;
-  text-align:center;font-weight:800;
-  cursor:pointer;
+  background:#ff004c;
+  color:#fff;
+  box-shadow:0 0 15px #ff004c;
 }
 </style>
 </head>
-
 <body>
 
-<!-- SPLASH -->
-<div id="splash">
-  <h1>MUNA BARAKATI</h1>
-  <p>Smart Secure App</p>
-  <div class="loader"></div>
-</div>
+<!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3">
+</audio>
 
-<div class="card" id="app">
-<div class="toggle" onclick="toggleMode()">🌙</div>
+<audio id="click">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-modern-click-box-check-1120.mp3">
+</audio>
+
+<audio id="success">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-futuristic-confirmation-268.mp3">
+</audio>
+
+<script>
+/* PARTICLES */
+for(let i=0;i<35;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=5+Math.random()*8+"s";
+  document.body.appendChild(p);
+}
+</script>
+
+<div class="card">
 
 <!-- LOGIN -->
 <div id="loginBox">
   <div class="logo">MUNA BARAKATI</div>
-  <div class="subtitle">Face ID Verification</div>
+  <div class="subtitle">AI Secure Technology Access</div>
 
-  <div class="face-wrap">
-    <video id="video" autoplay muted></video>
-    <div class="scan-line"></div>
-    <div class="face-frame"></div>
-  </div>
-
-  <div class="scan-text" id="scanText">Arahkan wajah ke kamera</div>
-  <button class="btn" onclick="startScan()">SCAN WAJAH</button>
+  <input id="user" placeholder="Username">
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="login()">LOGIN SYSTEM</button>
 </div>
 
 <!-- MENU -->
-<div id="menuBox" class="menu">
-  <h3>Menu Utama</h3>
+<div class="menu" id="menuBox">
+  <h3>CONTROL PANEL</h3>
 
-  <div class="grid">
-    <a href="https://droid10.my.id/" target="_blank" class="item">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5H3z"/></svg></div>
-      Toko
-    </a>
-    <a href="https://ilmandev.github.io/portoilman/" target="_blank" class="item">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M10 15l5-3-5-3v6z"/></svg></div>
-      Portofolio
-    </a>
-    <a href="https://wa.me/6287872921421" target="_blank" class="item">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.9 14.5"/></svg></div>
-      WhatsApp
-    </a>
-    <a href="https://maps.google.com" target="_blank" class="item">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2c-4 0-7 3-7 7"/></svg></div>
-      Maps
-    </a>
-  </div>
+  <a class="link" href="https://google.com" target="_blank">🌐 Google</a>
+  <a class="link" href="https://youtube.com" target="_blank">▶ YouTube</a>
+  <a class="link" href="https://droid10.my.id" target="_blank">📱 LPP & VARIANCE</a>
 
-  <div class="logout" onclick="logout()">Logout</div>
-</div>
+  <button class="logout" onclick="logout()">LOGOUT</button>
 </div>
 
-<!-- SOUND -->
-<audio id="clickSound" preload="auto">
-  <source src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3">
-</audio>
-
-<audio id="scanSound" preload="auto">
-  <source src="https://assets.mixkit.co/active_storage/sfx/2453/2453-preview.mp3">
-</audio>
+</div>
 
 <script>
-let stream;
-const clickSound=document.getElementById("clickSound");
-const scanSound=document.getElementById("scanSound");
+const click=document.getElementById("click");
+const success=document.getElementById("success");
+const bgm=document.getElementById("bgm");
 
-/* MODE */
-function toggleMode(){
-  document.body.classList.toggle("dark");
+/* VOICE AI */
+function speak(text){
+  let msg=new SpeechSynthesisUtterance(text);
+  msg.lang="id-ID";
+  msg.rate=0.95;
+  msg.pitch=1;
+  speechSynthesis.speak(msg);
 }
 
-/* SPLASH */
-setTimeout(()=>{
-  splash.style.display="none";
-  app.style.display="block";
-},1500);
-
-/* CLICK SOUND */
-document.addEventListener("click",e=>{
-  const t=e.target.closest("button,.item,.logout,.toggle");
-  if(!t) return;
-  clickSound.currentTime=0;
-  clickSound.play().catch(()=>{});
-});
-
-/* CAMERA */
-async function startCamera(){
-  stream=await navigator.mediaDevices.getUserMedia({video:true});
-  video.srcObject=stream;
-}
-
-/* FACE SCAN */
-async function startScan(){
-  await startCamera();
-  scanText.innerText="Scanning wajah...";
-  scanSound.currentTime=0;
-  scanSound.play().catch(()=>{});
-
-  setTimeout(()=>{
-    scanSound.pause();
-    scanText.innerText="Verifikasi berhasil ✔";
-    stream.getTracks().forEach(t=>t.stop());
+function login(){
+  click.play();
+  bgm.play(); // mulai musik setelah interaksi
+  if(user.value==="admin" && pass.value==="12345"){
     setTimeout(()=>{
+      success.play();
+      speak("Login berhasil. Selamat datang di sistem Muna Barakati.");
       loginBox.style.display="none";
       menuBox.style.display="block";
-    },700);
-  },3000);
+    },400);
+  }else{
+    speak("Akses ditolak. Username atau password salah.");
+    alert("ACCESS DENIED");
+  }
 }
 
-/* LOGOUT */
 function logout(){
+  click.play();
+  speak("Anda telah keluar dari sistem.");
   menuBox.style.display="none";
   loginBox.style.display="block";
 }
