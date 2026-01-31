@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Pengingat Ramadan 2026</title>
+
+<style>
+:root{
+  --bg:#020617;
+  --card:#0f172a;
+  --text:#e5e7eb;
+  --accent:#22c55e;
+  --gold:#facc15;
+}
+
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#020617;
+}
+
+*{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+}
+
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:14px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+h1{
+  text-align:center;
+  color:var(--gold);
+  margin:0;
+}
+
+.subtitle{
+  text-align:center;
+  opacity:.8;
+  margin-bottom:16px;
+}
+
+.toggle{
+  position:absolute;
+  top:12px;
+  right:14px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.countdown{
+  display:flex;
+  justify-content:space-between;
+  margin:18px 0;
+  gap:8px;
+}
+
+.box{
+  flex:1;
+  background:linear-gradient(160deg,#064e3b,#022c22);
+  border-radius:16px;
+  padding:10px;
+  text-align:center;
+}
+
+.box h2{
+  margin:0;
+  font-size:22px;
+}
+
+.box span{
+  font-size:12px;
+  opacity:.8;
+}
+
+.section{
+  margin-top:20px;
+}
+
+select,button{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:none;
+  font-size:15px;
+  margin-top:8px;
+}
+
+button{
+  background:var(--accent);
+  color:#022c22;
+  font-weight:600;
+}
+
+.sholat{
+  margin-top:12px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px dashed rgba(255,255,255,.15);
+}
+
+.footer{
+  text-align:center;
+  font-size:12px;
+  opacity:.6;
+  margin-top:16px;
+}
+
+/* MOBILE ONLY */
+@media (min-width:768px){
+  body::before{
+    content:"📱 Website ini khusus HP";
+    position:fixed;
+    inset:0;
+    background:#020617;
+    color:#facc15;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    z-index:9999;
+  }
+  .container{display:none}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="toggle" onclick="toggleMode()">🌙</div>
+
+  <div class="card">
+    <h1>🕌 Ramadan 1447 H</h1>
+    <div class="subtitle">Pengingat Ramadan 2026 • Auto GPS</div>
+
+    <div class="countdown">
+      <div class="box"><h2 id="d">0</h2><span>Hari</span></div>
+      <div class="box"><h2 id="h">0</h2><span>Jam</span></div>
+      <div class="box"><h2 id="m">0</h2><span>Menit</span></div>
+      <div class="box"><h2 id="s">0</h2><span>Detik</span></div>
+    </div>
+
+    <div class="section">
+      📍 <b>Lokasi</b>
+      <select id="city">
+        <option>Menentukan lokasi...</option>
+      </select>
+    </div>
+
+    <div class="section">
+      ⏰ <b>Jadwal Sholat Hari Ini</b>
+      <div class="sholat" id="sholat"></div>
+    </div>
+
+    <div class="section">
+      <button onclick="openLink()">🔗 Buka Link</button>
+    </div>
+
+    <div class="footer">
+      by CodeMuna • Mobile Edition
+    </div>
+  </div>
+</div>
+
+<script>
+/* MODE */
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
+
+/* COUNTDOWN RAMADAN 2026 (perkiraan 17 Feb 2026) */
+const target = new Date("2026-02-17T00:00:00");
+setInterval(()=>{
+  const now = new Date();
+  let diff = target-now;
+  if(diff<0) diff=0;
+  document.getElementById("d").innerText=Math.floor(diff/86400000);
+  document.getElementById("h").innerText=Math.floor(diff/3600000)%24;
+  document.getElementById("m").innerText=Math.floor(diff/60000)%60;
+  document.getElementById("s").innerText=Math.floor(diff/1000)%60;
+},1000);
+
+/* GPS & SHOLAT */
+navigator.geolocation.getCurrentPosition(pos=>{
+  fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&localityLanguage=id`)
+  .then(r=>r.json())
+  .then(loc=>{
+    document.getElementById("city").innerHTML=`<option>${loc.city || loc.locality}</option>`;
+    loadSholat(pos.coords.latitude,pos.coords.longitude);
+  });
+});
+
+function loadSholat(lat,lon){
+  fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=20`)
+  .then(r=>r.json())
+  .then(d=>{
+    const t=d.data.timings;
+    sholat.innerHTML=`
+      <div class="row"><span>Subuh</span><span>${t.Fajr}</span></div>
+      <div class="row"><span>Dzuhur</span><span>${t.Dhuhr}</span></div>
+      <div class="row"><span>Ashar</span><span>${t.Asr}</span></div>
+      <div class="row"><span>Maghrib</span><span>${t.Maghrib}</span></div>
+      <div class="row"><span>Isya</span><span>${t.Isha}</span></div>
+    `;
+  });
+}
+
+/* LINK */
+function openLink(){
+  window.open("https://droid10.my.id","_blank");
+}
+</script>
+</body>
+</html>
