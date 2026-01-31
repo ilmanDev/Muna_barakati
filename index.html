@@ -3,170 +3,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengingat Ramadan 2026 • CodeMuna</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<title>Muna Barakati | Register</title>
 
 <style>
 :root{
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --primary:#16a34a;
-  --accent:#ca8a04;
-  --text:#0f172a;
-  --border:#e5e7eb;
+  --bg:#020617;
+  --card:#020b1c;
+  --border:#0f1f3a;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --primary:#38bdf8;
+  --glow:#0ea5e9;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+
+body.light{
+  --bg:#eef5ff;
+  --card:#ffffff;
+  --border:#c7d2fe;
+  --text:#020617;
+  --muted:#475569;
+  --primary:#2563eb;
+  --glow:#3b82f6;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',system-ui,sans-serif;
+}
+
 body{
-  font-family:Poppins,sans-serif;
-  background:radial-gradient(circle at top,#dcfce7,#f8fafc);
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#020b3a,transparent 60%),var(--bg);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:16px;
   color:var(--text);
 }
-.container{max-width:420px;margin:auto;padding:16px}
-.card{
-  background:var(--card);
-  border-radius:22px;
-  padding:22px;
-  box-shadow:0 18px 40px rgba(0,0,0,.12);
-}
-h1{
-  font-family:Amiri,serif;
-  text-align:center;
-  color:var(--accent);
-  font-size:28px;
-}
-.subtitle{text-align:center;font-size:13px;opacity:.7;margin-bottom:16px}
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-bottom:16px;
-}
-.box{
-  background:linear-gradient(160deg,#16a34a,#22c55e);
-  color:white;
-  border-radius:16px;
-  padding:12px 6px;
-  text-align:center;
-}
-.box h2{font-size:20px}
-.box span{font-size:11px}
-label{display:block;margin:14px 0 6px;font-weight:600;color:#15803d}
-select{
-  width:100%;
-  padding:12px;
-  border-radius:14px;
-  border:1px solid var(--border);
-}
-.prayer div{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  border-bottom:1px solid var(--border);
-}
-.btn{
-  margin-top:18px;
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:16px;
-  background:#22c55e;
-  font-weight:600;
-}
-footer{text-align:center;font-size:12px;opacity:.6;margin-top:14px}
 
-@media(min-width:768px){
-  body::before{
-    content:"📱 Khusus Tampilan HP";
-    position:fixed;
-    inset:0;
-    background:#020617;
-    color:#facc15;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:22px;
-  }
-  .container{display:none}
+/* CARD */
+.card{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  padding:22px;
+  border-radius:26px;
+  border:1px solid var(--border);
+  box-shadow:0 0 40px rgba(56,189,248,.25);
+}
+
+/* SWITCH */
+.theme-switch{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:10px;
+}
+
+.switch-box{
+  background:var(--card);
+  padding:6px 10px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+}
+
+.switch{
+  position:relative;
+  width:42px;
+  height:22px;
+}
+
+.switch input{display:none;}
+
+.slider{
+  position:absolute;
+  inset:0;
+  background:#020617;
+  border-radius:20px;
+  transition:.3s;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  width:18px;
+  height:18px;
+  left:2px;
+  top:2px;
+  background:#38bdf8;
+  border-radius:50%;
+  transition:.3s;
+  box-shadow:0 0 10px var(--glow);
+}
+
+input:checked + .slider{
+  background:#dbeafe;
+}
+
+input:checked + .slider:before{
+  transform:translateX(20px);
+  background:#2563eb;
+}
+
+/* BRAND */
+.brand{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.brand .logo{
+  width:76px;
+  height:76px;
+  margin:0 auto 10px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:900;
+  color:#020617;
+  box-shadow:0 0 30px var(--glow);
+}
+
+.brand h1{
+  font-size:18px;
+  margin:0;
+}
+
+.brand span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+p{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+/* FORM */
+.input-group{
+  margin-bottom:14px;
+}
+
+label{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+  display:block;
+}
+
+input,select{
+  width:100%;
+  padding:15px;
+  border-radius:16px;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text);
+}
+
+input:focus,select:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 12px var(--glow);
+}
+
+/* BUTTON */
+.button-wrap{
+  margin-top:22px;
+}
+
+button.main{
+  width:100%;
+  height:56px;
+  border:none;
+  border-radius:28px;
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+  color:#020617;
+  font-size:17px;
+  font-weight:800;
+  box-shadow:0 12px 30px rgba(56,189,248,.45);
+}
+
+button.main:active{
+  transform:scale(.97);
+}
+
+/* LOGIN */
+.login-link{
+  margin-top:14px;
+  text-align:center;
+  font-size:13px;
+}
+
+.login-link a{
+  color:var(--primary);
+  font-weight:700;
+  text-decoration:none;
+}
+
+.footer{
+  margin-top:18px;
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
 }
 </style>
 </head>
 
 <body>
-<div class="container">
+
 <div class="card">
 
-<h1>🕌 Ramadan 1447 H</h1>
-<div class="subtitle">Pengingat Ramadan 2026 • by CodeMuna</div>
+  <!-- SWITCH -->
+  <div class="theme-switch">
+    <div class="switch-box">
+      🌙
+      <label class="switch">
+        <input type="checkbox" id="modeSwitch">
+        <span class="slider"></span>
+      </label>
+      ☀️
+    </div>
+  </div>
 
-<div class="countdown">
-  <div class="box"><h2 id="d">0</h2><span>Hari</span></div>
-  <div class="box"><h2 id="h">0</h2><span>Jam</span></div>
-  <div class="box"><h2 id="m">0</h2><span>Menit</span></div>
-  <div class="box"><h2 id="s">0</h2><span>Detik</span></div>
-</div>
+  <!-- BRAND -->
+  <div class="brand">
+    <div class="logo">MB</div>
+    <h1>MUNA BARAKATI</h1>
+    <span>Register Paket</span>
+  </div>
 
-<label>📍 Pilih Kabupaten / Kota</label>
-<select id="kota" onchange="updateJadwal()">
-  <option value="">-- Pilih Lokasi --</option>
-  <option value="jakarta">Jakarta</option>
-  <option value="bandung">Bandung</option>
-  <option value="surabaya">Surabaya</option>
-  <option value="makassar">Makassar</option>
-  <option value="kendari">Kendari</option>
-  <option value="muna">Kabupaten Muna</option>
-</select>
+  <p>Isi data dengan benar</p>
 
-<label>⏰ Jadwal Sholat</label>
-<div class="prayer">
-  <div><span>Subuh</span><span id="subuh">--:--</span></div>
-  <div><span>Dzuhur</span><span id="dzuhur">--:--</span></div>
-  <div><span>Ashar</span><span id="ashar">--:--</span></div>
-  <div><span>Maghrib</span><span id="maghrib">--:--</span></div>
-  <div><span>Isya</span><span id="isya">--:--</span></div>
-</div>
+  <div class="input-group">
+    <label>Nama</label>
+    <input id="nama">
+  </div>
 
-<button class="btn" onclick="openLink()">🔗 Buka Link Utama</button>
-<footer>Stabil • Tanpa API • Mobile Only</footer>
+  <div class="input-group">
+    <label>Kode Toko</label>
+    <input id="kodeToko">
+  </div>
 
-</div>
+  <div class="input-group">
+    <label>Nama Toko</label>
+    <input id="namaToko">
+  </div>
+
+  <div class="input-group">
+    <label>WhatsApp</label>
+    <input id="wa">
+  </div>
+
+  <div class="input-group">
+    <label>Email</label>
+    <input id="email">
+  </div>
+
+  <div class="input-group">
+    <label>Paket</label>
+    <select id="paket">
+      <option value="">-- Pilih Paket --</option>
+      <option>1 Bulan - Rp150.000</option>
+    </select>
+  </div>
+
+  <div class="button-wrap">
+    <button class="main" onclick="kirimWA()">Daftar Sekarang</button>
+  </div>
+
+  <div class="login-link">
+    Sudah punya akun?
+    <a href="https://droid10.my.id/" target="_blank">Login</a>
+  </div>
+
+  <div class="footer">© 2026 Muna Barakati</div>
+
 </div>
 
 <script>
-/* COUNTDOWN */
-const target=new Date("2026-02-18T18:00:00").getTime();
-setInterval(()=>{
- const now=Date.now(),diff=target-now;
- if(diff<=0)return;
- d.textContent=Math.floor(diff/86400000);
- h.textContent=Math.floor(diff%86400000/3600000);
- m.textContent=Math.floor(diff%3600000/60000);
- s.textContent=Math.floor(diff%60000/1000);
-},1000);
-
-/* DATA JADWAL SHOLAT */
-const jadwal={
- jakarta:{subuh:"04:32",dzuhur:"12:02",ashar:"15:23",maghrib:"18:12",isya:"19:25"},
- bandung:{subuh:"04:29",dzuhur:"12:00",ashar:"15:20",maghrib:"18:09",isya:"19:21"},
- surabaya:{subuh:"04:20",dzuhur:"11:55",ashar:"15:16",maghrib:"18:01",isya:"19:12"},
- makassar:{subuh:"04:44",dzuhur:"12:06",ashar:"15:27",maghrib:"18:15",isya:"19:26"},
- kendari:{subuh:"04:36",dzuhur:"12:03",ashar:"15:25",maghrib:"18:13",isya:"19:24"},
- muna:{subuh:"04:38",dzuhur:"12:04",ashar:"15:26",maghrib:"18:14",isya:"19:25"}
+/* DARK / LIGHT */
+const sw=document.getElementById("modeSwitch");
+if(localStorage.theme==="light"){
+  document.body.classList.add("light");
+  sw.checked=true;
+}
+sw.onchange=()=>{
+  document.body.classList.toggle("light");
+  localStorage.theme=document.body.classList.contains("light")?"light":"dark";
 };
 
-function updateJadwal(){
- const k=kota.value;
- if(!jadwal[k])return;
- subuh.textContent=jadwal[k].subuh;
- dzuhur.textContent=jadwal[k].dzuhur;
- ashar.textContent=jadwal[k].ashar;
- maghrib.textContent=jadwal[k].maghrib;
- isya.textContent=jadwal[k].isya;
-}
-
-function openLink(){
- window.open("https://droid10.my.id","_blank");
+/* WA */
+function kirimWA(){
+  if(!nama.value||!kodeToko.value||!namaToko.value||!wa.value||!email.value||!paket.value){
+    alert("Lengkapi semua data!");
+    return;
+  }
+  const msg=`📌 PENDAFTARAN MUNA BARAKATI
+👤 Nama: ${nama.value}
+🏪 Kode: ${kodeToko.value}
+🏬 Toko: ${namaToko.value}
+📱 WA: ${wa.value}
+📧 Email: ${email.value}
+📦 Paket: ${paket.value}`;
+  window.open("https://wa.me/6287872921421?text="+encodeURIComponent(msg));
 }
 </script>
+
 </body>
 </html>
