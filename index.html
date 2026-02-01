@@ -6,227 +6,208 @@
 <title>Muna Barakati | Register</title>
 
 <style>
-/* ================= INDOMARET DEFAULT ================= */
 :root{
   --bg:#f5f7fb;
   --card:#ffffff;
   --border:#e5e7eb;
   --text:#111827;
   --muted:#6b7280;
-
   --primary:#005cab;
   --secondary:#e11d2e;
   --accent:#facc15;
-
   --ok:#16a34a;
   --err:#dc2626;
 }
-
-/* ================= TECH ================= */
 body.tech{
   --bg:#eef5ff;
   --card:#ffffff;
   --border:#c7d2fe;
   --text:#020617;
   --muted:#475569;
-
   --primary:#2563eb;
   --secondary:#3b82f6;
   --accent:#60a5fa;
 }
-
 *{box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-
 body{
   margin:0;
   min-height:100vh;
   background:linear-gradient(180deg,#fff,var(--bg));
   display:flex;
   justify-content:center;
-  align-items:center;
-  padding:16px;
-  color:var(--text);
+  padding:14px;
+  color:var(--text)
 }
 
-/* ================= LOADING ================= */
+/* LOADING */
 #loading{
-  position:fixed;
-  inset:0;
-  background:#fff;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
+  position:fixed;inset:0;background:#fff;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;z-index:9999
 }
-.loading-text{
-  font-size:28px;
-  font-weight:900;
-  color:var(--primary);
-}
-.progress{
-  width:160px;
-  height:6px;
-  background:#e5e7eb;
-  border-radius:10px;
-  margin-top:14px;
-  overflow:hidden;
-}
-.bar{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
-  animation:load 1.8s forwards;
-}
+.loading-text{font-size:26px;font-weight:900;color:var(--primary)}
+.progress{width:160px;height:6px;background:#e5e7eb;border-radius:10px;margin-top:14px;overflow:hidden}
+.bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));animation:load 1.6s forwards}
 @keyframes load{to{width:100%}}
 .loading-note{font-size:12px;color:var(--muted);margin-top:8px}
 
-/* ================= CARD ================= */
+/* CARD */
 .card{
   width:100%;
   max-width:420px;
   background:var(--card);
-  padding:22px;
+  padding:18px 18px 20px;
   border-radius:22px;
   border:1px solid var(--border);
-  box-shadow:0 18px 40px rgba(0,0,0,.08);
+  box-shadow:0 14px 30px rgba(0,0,0,.08)
 }
 
-/* ================= SWITCH ================= */
+/* SWITCH */
 .theme-switch{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  margin-bottom:10px;
-  font-size:12px;
-  font-weight:700;
+  display:flex;justify-content:center;align-items:center;
+  gap:10px;margin-bottom:8px;font-size:12px;font-weight:700
 }
 .theme-switch span{color:#9ca3af}
 .theme-switch span.active{color:var(--primary)}
-
-.switch{
-  position:relative;
-  width:44px;
-  height:22px;
-}
+.switch{position:relative;width:42px;height:22px}
 .switch input{display:none}
 .slider{
-  position:absolute;
-  inset:0;
-  background:#e5e7eb;
-  border-radius:20px;
-  cursor:pointer;
+  position:absolute;inset:0;background:#e5e7eb;
+  border-radius:20px;cursor:pointer
 }
 .slider:before{
-  content:"";
-  position:absolute;
-  width:18px;
-  height:18px;
-  left:2px;
-  top:2px;
-  background:var(--primary);
-  border-radius:50%;
-  transition:.3s;
+  content:"";position:absolute;width:18px;height:18px;
+  left:2px;top:2px;background:var(--primary);
+  border-radius:50%;transition:.3s
 }
-.switch input:checked + .slider:before{
-  transform:translateX(22px);
-}
+.switch input:checked + .slider:before{transform:translateX(20px)}
 
-/* ================= BRAND ================= */
-.brand{text-align:center;margin-bottom:16px}
-.brand h1{
-  margin:0;
-  font-size:22px;
-  font-weight:900;
-  color:var(--primary);
-}
-.brand .line{
-  display:flex;
-  justify-content:center;
-  gap:6px;
-  margin:6px 0;
-}
-.brand .line span{
-  width:26px;height:4px;border-radius:4px
-}
-.b{background:var(--primary)}
-.r{background:var(--secondary)}
-.y{background:var(--accent)}
+/* BRAND */
+.brand{text-align:center;margin-bottom:12px}
+.brand h1{margin:0;font-size:21px;font-weight:900;color:var(--primary)}
+.brand .line{display:flex;justify-content:center;gap:6px;margin:6px 0}
+.brand .line span{width:22px;height:4px;border-radius:4px}
+.b{background:var(--primary)} .r{background:var(--secondary)} .y{background:var(--accent)}
 .brand small{font-size:12px;color:var(--muted)}
 
-p{text-align:center;font-size:13px;color:var(--muted)}
+p{text-align:center;font-size:13px;color:var(--muted);margin:6px 0 12px}
 
-/* ================= FORM ================= */
-.input-group{margin-bottom:14px}
-label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+/* FORM */
+.input-group{margin-bottom:10px}
+label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
 input,select{
   width:100%;
-  padding:15px;
+  padding:13px;
   border-radius:14px;
-  border:1.5px solid var(--border);
+  border:1.4px solid var(--border);
   background:#f9fafb;
+  font-size:14px
 }
 input.valid{border-color:var(--ok)}
 input.invalid{border-color:var(--err)}
-.hint{font-size:11px;margin-top:4px}
+.hint{font-size:11px;margin-top:3px}
 .hint.ok{color:var(--ok)}
 .hint.err{color:var(--err)}
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 button.main{
   width:100%;
-  height:56px;
+  height:52px;
   border:none;
-  border-radius:28px;
+  border-radius:26px;
   background:linear-gradient(135deg,var(--primary),var(--secondary));
   color:#fff;
-  font-size:17px;
+  font-size:16px;
   font-weight:800;
-  margin-top:10px;
+  margin-top:12px
 }
 button.main:disabled{opacity:.5}
 
-.payment{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+/* LOGIN */
+.login-box{
   margin-top:14px;
+  text-align:center;
+  padding-top:10px;
+  border-top:1px dashed var(--border)
 }
-button.qris{
-  border:2px solid var(--secondary);
-  background:#fff;
-  color:var(--secondary);
-  border-radius:20px;
-  height:50px;
+.login-box span{font-size:12px;color:var(--muted)}
+.login-box a{
+  display:block;
+  margin-top:8px;
+  height:44px;
+  line-height:44px;
+  border-radius:22px;
+  background:#111827;
+  color:#fff;
   font-weight:800;
-}
-button.dana{
-  background:linear-gradient(135deg,var(--accent),#f59e0b);
-  border:none;
-  border-radius:20px;
-  height:50px;
-  font-weight:800;
+  text-decoration:none
 }
 
-/* ================= TOAST ================= */
+/* TOAST */
 .toast{
-  position:fixed;
-  top:-60px;
-  left:50%;
+  position:fixed;top:-60px;left:50%;
   transform:translateX(-50%);
-  padding:12px 20px;
-  border-radius:20px;
-  color:#fff;
-  font-size:13px;
-  font-weight:700;
-  background:var(--primary);
-  transition:.4s;
-  z-index:99999;
+  padding:12px 20px;border-radius:20px;
+  color:#fff;font-size:13px;font-weight:700;
+  background:var(--primary);transition:.4s;z-index:99999
 }
 .toast.show{top:18px}
 .toast.error{background:#dc2626}
 .toast.success{background:#16a34a}
+
+/* FLOAT WA */
+.wa-float{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:#25D366;
+  color:#fff;
+  font-size:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.3);
+  cursor:pointer;
+  z-index:9999
+}
+
+/* WA POPUP */
+.wa-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10000
+}
+.wa-box{
+  background:#fff;
+  width:90%;
+  max-width:300px;
+  border-radius:18px;
+  padding:18px;
+  text-align:center
+}
+.wa-box h3{margin:0 0 6px;font-size:16px}
+.wa-box p{font-size:13px;color:var(--muted)}
+.wa-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px
+}
+.wa-actions button{
+  flex:1;
+  height:44px;
+  border-radius:22px;
+  border:none;
+  font-weight:800
+}
+.wa-cancel{background:#e5e7eb}
+.wa-chat{background:#25D366;color:#fff}
 </style>
 </head>
 
@@ -283,20 +264,35 @@ button.dana{
   </select>
 </div>
 
-<button class="main" id="btn" onclick="kirimWA()" disabled>DAFTAR SEKARANG</button>
+<button class="main" id="btn" onclick="kirimWA()" disabled>
+  DAFTAR SEKARANG
+</button>
 
-<div class="payment">
-  <button class="qris">QRIS</button>
-  <button class="dana">DANA</button>
+<div class="login-box">
+  <span>Sudah punya akun?</span>
+  <a href="https://droid10.my.id" target="_blank">LOGIN SEKARANG</a>
 </div>
 
+</div>
+
+<!-- FLOAT WA -->
+<div class="wa-float" onclick="openWA()">💬</div>
+
+<!-- POPUP WA -->
+<div class="wa-popup" id="waPopup">
+  <div class="wa-box">
+    <h3>Butuh Bantuan?</h3>
+    <p>Chat langsung dengan admin via WhatsApp</p>
+    <div class="wa-actions">
+      <button class="wa-cancel" onclick="closeWA()">Batal</button>
+      <button class="wa-chat" onclick="chatAdmin()">Chat Admin</button>
+    </div>
+  </div>
 </div>
 
 <script>
-/* LOADING */
-window.onload=()=>setTimeout(()=>loading.style.display="none",1800);
+window.onload=()=>setTimeout(()=>loading.style.display="none",1600);
 
-/* TOAST */
 const toast=document.getElementById("toast");
 function showToast(msg,type=""){
   toast.textContent=msg;
@@ -305,65 +301,58 @@ function showToast(msg,type=""){
 }
 
 /* THEME */
-const sw=document.getElementById("themeSwitch");
-const indo=document.getElementById("indo");
-const tech=document.getElementById("tech");
-
+const sw=themeSwitch,indo=document.getElementById("indo"),tech=document.getElementById("tech");
 if(localStorage.theme==="tech"){
   document.body.classList.add("tech");
-  sw.checked=true;
-  indo.classList.remove("active");
-  tech.classList.add("active");
+  sw.checked=true;indo.classList.remove("active");tech.classList.add("active");
 }
-
 sw.onchange=()=>{
   document.body.classList.toggle("tech");
   const t=document.body.classList.contains("tech");
   localStorage.theme=t?"tech":"indo";
   indo.classList.toggle("active",!t);
   tech.classList.toggle("active",t);
-  showToast(t?"Tema TECH aktif":"Tema INDOMARET aktif","success");
 };
 
 /* VALIDASI */
 const btn=document.getElementById("btn");
-function validWA(v){return /^(08|62)\d{8,13}$/.test(v.replace(/\D/g,""))}
+function validWA(v){return /^(08|62)\d{8,13}$/.test(v)}
 function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
-
 function check(){
-  btn.disabled=!(
-    nama.value&&kodeToko.value&&namaToko.value&&paket.value&&
-    validWA(wa.value)&&validEmail(email.value)
-  );
+  btn.disabled=!(nama.value&&kodeToko.value&&namaToko.value&&paket.value&&validWA(wa.value)&&validEmail(email.value));
 }
-
 wa.oninput=()=>{
   wa.value=wa.value.replace(/[^0-9]/g,"");
-  if(validWA(wa.value)){
-    wa.className="valid";waHint.textContent="WhatsApp valid";waHint.className="hint ok";
-  }else{
-    wa.className="invalid";waHint.textContent="Format WA salah";waHint.className="hint err";
-  }
+  if(validWA(wa.value)){wa.className="valid";waHint.textContent="WhatsApp valid";waHint.className="hint ok";}
+  else{wa.className="invalid";waHint.textContent="Format WA salah";waHint.className="hint err";}
   check();
 };
-
 email.oninput=()=>{
-  if(validEmail(email.value)){
-    email.className="valid";emailHint.textContent="Email valid";emailHint.className="hint ok";
-  }else{
-    email.className="invalid";emailHint.textContent="Email tidak valid";emailHint.className="hint err";
-  }
+  if(validEmail(email.value)){email.className="valid";emailHint.textContent="Email valid";emailHint.className="hint ok";}
+  else{email.className="invalid";emailHint.textContent="Email tidak valid";emailHint.className="hint err";}
   check();
 };
-
 [nama,kodeToko,namaToko,paket].forEach(i=>i.oninput=check);
 
+/* KIRIM WA */
 function kirimWA(){
-  if(btn.disabled){
-    showToast("Lengkapi data dengan benar","error");
-    return;
-  }
-  showToast("Data valid, mengirim...","success");
+  const msg=`*PENDAFTARAN MUNA BARAKATI*%0A
+Nama: ${nama.value}%0A
+Kode Toko: ${kodeToko.value}%0A
+Nama Toko: ${namaToko.value}%0A
+WA: ${wa.value}%0A
+Email: ${email.value}%0A
+Paket: ${paket.value}`;
+  window.open(`https://wa.me/6287872921421?text=${msg}`,"_blank");
+  showToast("Pendaftaran berhasil","success");
+}
+
+/* WA POPUP */
+function openWA(){waPopup.style.display="flex"}
+function closeWA(){waPopup.style.display="none"}
+function chatAdmin(){
+  window.open("https://wa.me/6287872921421","_blank");
+  closeWA();
 }
 </script>
 
