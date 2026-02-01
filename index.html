@@ -6,35 +6,41 @@
 <title>Muna Barakati | Register</title>
 
 <style>
+/* ================= INDOMARET DEFAULT ================= */
 :root{
-  --bg:#020617;
-  --card:#020b1c;
-  --border:#0f1f3a;
-  --text:#e5e7eb;
-  --muted:#9ca3af;
-  --primary:#38bdf8;
-  --glow:#0ea5e9;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --border:#e5e7eb;
+  --text:#111827;
+  --muted:#6b7280;
+
+  --primary:#005cab;
+  --secondary:#e11d2e;
+  --accent:#facc15;
+
+  --ok:#16a34a;
+  --err:#dc2626;
 }
 
-body.light{
+/* ================= TECH ================= */
+body.tech{
   --bg:#eef5ff;
   --card:#ffffff;
   --border:#c7d2fe;
   --text:#020617;
   --muted:#475569;
+
   --primary:#2563eb;
-  --glow:#3b82f6;
+  --secondary:#3b82f6;
+  --accent:#60a5fa;
 }
 
-*{
-  box-sizing:border-box;
-  font-family:'Segoe UI',system-ui,sans-serif;
-}
+*{box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
 
 body{
   margin:0;
   min-height:100vh;
-  background:radial-gradient(circle at top,#020b3a,transparent 60%),var(--bg);
+  background:linear-gradient(180deg,#fff,var(--bg));
   display:flex;
   justify-content:center;
   align-items:center;
@@ -42,51 +48,76 @@ body{
   color:var(--text);
 }
 
-/* CARD */
+/* ================= LOADING ================= */
+#loading{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.loading-text{
+  font-size:28px;
+  font-weight:900;
+  color:var(--primary);
+}
+.progress{
+  width:160px;
+  height:6px;
+  background:#e5e7eb;
+  border-radius:10px;
+  margin-top:14px;
+  overflow:hidden;
+}
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
+  animation:load 1.8s forwards;
+}
+@keyframes load{to{width:100%}}
+.loading-note{font-size:12px;color:var(--muted);margin-top:8px}
+
+/* ================= CARD ================= */
 .card{
   width:100%;
   max-width:420px;
   background:var(--card);
   padding:22px;
-  border-radius:26px;
+  border-radius:22px;
   border:1px solid var(--border);
-  box-shadow:0 0 40px rgba(56,189,248,.25);
+  box-shadow:0 18px 40px rgba(0,0,0,.08);
 }
 
-/* SWITCH */
+/* ================= SWITCH ================= */
 .theme-switch{
   display:flex;
-  justify-content:flex-end;
-  margin-bottom:10px;
-}
-
-.switch-box{
-  background:var(--card);
-  padding:6px 10px;
-  border-radius:18px;
-  border:1px solid var(--border);
-  display:flex;
+  justify-content:center;
   align-items:center;
-  gap:8px;
+  gap:10px;
+  margin-bottom:10px;
   font-size:12px;
+  font-weight:700;
 }
+.theme-switch span{color:#9ca3af}
+.theme-switch span.active{color:var(--primary)}
 
 .switch{
   position:relative;
-  width:42px;
+  width:44px;
   height:22px;
 }
-
-.switch input{display:none;}
-
+.switch input{display:none}
 .slider{
   position:absolute;
   inset:0;
-  background:#020617;
+  background:#e5e7eb;
   border-radius:20px;
-  transition:.3s;
+  cursor:pointer;
 }
-
 .slider:before{
   content:"";
   position:absolute;
@@ -94,226 +125,245 @@ body{
   height:18px;
   left:2px;
   top:2px;
-  background:#38bdf8;
+  background:var(--primary);
   border-radius:50%;
   transition:.3s;
-  box-shadow:0 0 10px var(--glow);
+}
+.switch input:checked + .slider:before{
+  transform:translateX(22px);
 }
 
-input:checked + .slider{
-  background:#dbeafe;
-}
-
-input:checked + .slider:before{
-  transform:translateX(20px);
-  background:#2563eb;
-}
-
-/* BRAND */
-.brand{
-  text-align:center;
-  margin-bottom:18px;
-}
-
-.brand .logo{
-  width:76px;
-  height:76px;
-  margin:0 auto 10px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  font-weight:900;
-  color:#020617;
-  box-shadow:0 0 30px var(--glow);
-}
-
+/* ================= BRAND ================= */
+.brand{text-align:center;margin-bottom:16px}
 .brand h1{
-  font-size:18px;
   margin:0;
+  font-size:22px;
+  font-weight:900;
+  color:var(--primary);
 }
-
-.brand span{
-  font-size:12px;
-  color:var(--muted);
+.brand .line{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin:6px 0;
 }
-
-p{
-  text-align:center;
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:18px;
+.brand .line span{
+  width:26px;height:4px;border-radius:4px
 }
+.b{background:var(--primary)}
+.r{background:var(--secondary)}
+.y{background:var(--accent)}
+.brand small{font-size:12px;color:var(--muted)}
 
-/* FORM */
-.input-group{
-  margin-bottom:14px;
-}
+p{text-align:center;font-size:13px;color:var(--muted)}
 
-label{
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:6px;
-  display:block;
-}
-
+/* ================= FORM ================= */
+.input-group{margin-bottom:14px}
+label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
 input,select{
   width:100%;
   padding:15px;
-  border-radius:16px;
-  background:transparent;
-  border:1px solid var(--border);
-  color:var(--text);
+  border-radius:14px;
+  border:1.5px solid var(--border);
+  background:#f9fafb;
 }
+input.valid{border-color:var(--ok)}
+input.invalid{border-color:var(--err)}
+.hint{font-size:11px;margin-top:4px}
+.hint.ok{color:var(--ok)}
+.hint.err{color:var(--err)}
 
-input:focus,select:focus{
-  outline:none;
-  border-color:var(--primary);
-  box-shadow:0 0 12px var(--glow);
-}
-
-/* BUTTON */
-.button-wrap{
-  margin-top:22px;
-}
-
+/* ================= BUTTON ================= */
 button.main{
   width:100%;
   height:56px;
   border:none;
   border-radius:28px;
-  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
-  color:#020617;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
   font-size:17px;
   font-weight:800;
-  box-shadow:0 12px 30px rgba(56,189,248,.45);
+  margin-top:10px;
 }
+button.main:disabled{opacity:.5}
 
-button.main:active{
-  transform:scale(.97);
-}
-
-/* LOGIN */
-.login-link{
+.payment{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
   margin-top:14px;
-  text-align:center;
+}
+button.qris{
+  border:2px solid var(--secondary);
+  background:#fff;
+  color:var(--secondary);
+  border-radius:20px;
+  height:50px;
+  font-weight:800;
+}
+button.dana{
+  background:linear-gradient(135deg,var(--accent),#f59e0b);
+  border:none;
+  border-radius:20px;
+  height:50px;
+  font-weight:800;
+}
+
+/* ================= TOAST ================= */
+.toast{
+  position:fixed;
+  top:-60px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:12px 20px;
+  border-radius:20px;
+  color:#fff;
   font-size:13px;
-}
-
-.login-link a{
-  color:var(--primary);
   font-weight:700;
-  text-decoration:none;
+  background:var(--primary);
+  transition:.4s;
+  z-index:99999;
 }
-
-.footer{
-  margin-top:18px;
-  text-align:center;
-  font-size:11px;
-  color:var(--muted);
-}
+.toast.show{top:18px}
+.toast.error{background:#dc2626}
+.toast.success{background:#16a34a}
 </style>
 </head>
 
 <body>
 
+<div id="loading">
+  <div class="loading-text">MUNA BARAKATI</div>
+  <div class="progress"><div class="bar"></div></div>
+  <div class="loading-note">Memuat sistem…</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
 <div class="card">
 
-  <!-- SWITCH -->
-  <div class="theme-switch">
-    <div class="switch-box">
-      🌙
-      <label class="switch">
-        <input type="checkbox" id="modeSwitch">
-        <span class="slider"></span>
-      </label>
-      ☀️
-    </div>
-  </div>
+<div class="theme-switch">
+  <span id="indo" class="active">INDO</span>
+  <label class="switch">
+    <input type="checkbox" id="themeSwitch">
+    <span class="slider"></span>
+  </label>
+  <span id="tech">TECH</span>
+</div>
 
-  <!-- BRAND -->
-  <div class="brand">
-    <div class="logo">MB</div>
-    <h1>MUNA BARAKATI</h1>
-    <span>Register Paket</span>
-  </div>
+<div class="brand">
+  <h1>MUNA BARAKATI</h1>
+  <div class="line"><span class="b"></span><span class="r"></span><span class="y"></span></div>
+  <small>Register Paket</small>
+</div>
 
-  <p>Isi data dengan benar</p>
+<p>Isi data toko dengan benar</p>
 
-  <div class="input-group">
-    <label>Nama</label>
-    <input id="nama">
-  </div>
+<div class="input-group"><label>Nama</label><input id="nama"></div>
+<div class="input-group"><label>Kode Toko</label><input id="kodeToko"></div>
+<div class="input-group"><label>Nama Toko</label><input id="namaToko"></div>
 
-  <div class="input-group">
-    <label>Kode Toko</label>
-    <input id="kodeToko">
-  </div>
+<div class="input-group">
+  <label>WhatsApp</label>
+  <input id="wa" placeholder="08xxxxxxxxxx">
+  <div id="waHint" class="hint"></div>
+</div>
 
-  <div class="input-group">
-    <label>Nama Toko</label>
-    <input id="namaToko">
-  </div>
+<div class="input-group">
+  <label>Email</label>
+  <input id="email" placeholder="email@domain.com">
+  <div id="emailHint" class="hint"></div>
+</div>
 
-  <div class="input-group">
-    <label>WhatsApp</label>
-    <input id="wa">
-  </div>
+<div class="input-group">
+  <label>Paket</label>
+  <select id="paket">
+    <option value="">-- Pilih Paket --</option>
+    <option>1 Bulan - Rp50.000</option>
+  </select>
+</div>
 
-  <div class="input-group">
-    <label>Email</label>
-    <input id="email">
-  </div>
+<button class="main" id="btn" onclick="kirimWA()" disabled>DAFTAR SEKARANG</button>
 
-  <div class="input-group">
-    <label>Paket</label>
-    <select id="paket">
-      <option value="">-- Pilih Paket --</option>
-      <option>1 Bulan - Rp50.000</option>
-    </select>
-  </div>
-
-  <div class="button-wrap">
-    <button class="main" onclick="kirimWA()">Daftar Sekarang</button>
-  </div>
-
-  <div class="login-link">
-    Sudah punya akun?
-    <a href="https://droid10.my.id/" target="_blank">Login</a>
-  </div>
-
-  <div class="footer">© 2026 Muna Barakati</div>
+<div class="payment">
+  <button class="qris">QRIS</button>
+  <button class="dana">DANA</button>
+</div>
 
 </div>
 
 <script>
-/* DARK / LIGHT */
-const sw=document.getElementById("modeSwitch");
-if(localStorage.theme==="light"){
-  document.body.classList.add("light");
-  sw.checked=true;
+/* LOADING */
+window.onload=()=>setTimeout(()=>loading.style.display="none",1800);
+
+/* TOAST */
+const toast=document.getElementById("toast");
+function showToast(msg,type=""){
+  toast.textContent=msg;
+  toast.className="toast show "+type;
+  setTimeout(()=>toast.className="toast",2200);
 }
+
+/* THEME */
+const sw=document.getElementById("themeSwitch");
+const indo=document.getElementById("indo");
+const tech=document.getElementById("tech");
+
+if(localStorage.theme==="tech"){
+  document.body.classList.add("tech");
+  sw.checked=true;
+  indo.classList.remove("active");
+  tech.classList.add("active");
+}
+
 sw.onchange=()=>{
-  document.body.classList.toggle("light");
-  localStorage.theme=document.body.classList.contains("light")?"light":"dark";
+  document.body.classList.toggle("tech");
+  const t=document.body.classList.contains("tech");
+  localStorage.theme=t?"tech":"indo";
+  indo.classList.toggle("active",!t);
+  tech.classList.toggle("active",t);
+  showToast(t?"Tema TECH aktif":"Tema INDOMARET aktif","success");
 };
 
-/* WA */
+/* VALIDASI */
+const btn=document.getElementById("btn");
+function validWA(v){return /^(08|62)\d{8,13}$/.test(v.replace(/\D/g,""))}
+function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+
+function check(){
+  btn.disabled=!(
+    nama.value&&kodeToko.value&&namaToko.value&&paket.value&&
+    validWA(wa.value)&&validEmail(email.value)
+  );
+}
+
+wa.oninput=()=>{
+  wa.value=wa.value.replace(/[^0-9]/g,"");
+  if(validWA(wa.value)){
+    wa.className="valid";waHint.textContent="WhatsApp valid";waHint.className="hint ok";
+  }else{
+    wa.className="invalid";waHint.textContent="Format WA salah";waHint.className="hint err";
+  }
+  check();
+};
+
+email.oninput=()=>{
+  if(validEmail(email.value)){
+    email.className="valid";emailHint.textContent="Email valid";emailHint.className="hint ok";
+  }else{
+    email.className="invalid";emailHint.textContent="Email tidak valid";emailHint.className="hint err";
+  }
+  check();
+};
+
+[nama,kodeToko,namaToko,paket].forEach(i=>i.oninput=check);
+
 function kirimWA(){
-  if(!nama.value||!kodeToko.value||!namaToko.value||!wa.value||!email.value||!paket.value){
-    alert("Lengkapi semua data!");
+  if(btn.disabled){
+    showToast("Lengkapi data dengan benar","error");
     return;
   }
-  const msg=`📌 PENDAFTARAN MUNA BARAKATI
-👤 Nama: ${nama.value}
-🏪 Kode: ${kodeToko.value}
-🏬 Toko: ${namaToko.value}
-📱 WA: ${wa.value}
-📧 Email: ${email.value}
-📦 Paket: ${paket.value}`;
-  window.open("https://wa.me/6287872921421?text="+encodeURIComponent(msg));
+  showToast("Data valid, mengirim...","success");
 }
 </script>
 
